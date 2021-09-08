@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useSquare({ updateScore, incClicksCount }) {
+export default function useSquare({ gameData, updateScore, incClicksCount }) {
   const mainSquareClick = () => {
     incClicksCount();
     updateScore(5);

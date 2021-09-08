@@ -14,6 +14,7 @@ export default function SquaresGame() {
           Total clicks: {gameData.totalClicksCount}
         </p>
         <Square
+          gameData={gameData}
           updateScore={(score) => {
             updateScore(score);
           }}
@@ -22,7 +23,16 @@ export default function SquaresGame() {
           }}
         />
       </div>
-      <div className="squares-scene__col squares-scene__col--autoclicks"></div>
+      <ul className="squares-scene__col squares-scene__col--autoclicks">
+        {gameData.clickers.map((clicker) => {
+          return (
+            <li className="square" key={clicker.id}>
+              <div className="square__surface"></div>
+              <button className="square__btn">Upgrade: 0</button>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

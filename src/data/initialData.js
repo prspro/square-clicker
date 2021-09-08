@@ -3,6 +3,10 @@ export const initialData = {
   totalScore: 0,
   clickersPrice: 10,
   clickersProductivity: 2,
+  mainSquare: {
+    score: 0,
+    clicks: 0,
+  },
   clickers: [
     {
       id: 0,
