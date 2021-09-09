@@ -23,12 +23,21 @@ export default function SquaresGame() {
           }}
         />
       </div>
-      <ul className="squares-scene__col squares-scene__col--autoclicks">
+      <ul className="squares-scene__col squares-scene__col--autoclicks autoclickers-list">
         {gameData.clickers.map((clicker) => {
           return (
-            <li className="square" key={clicker.id}>
-              <div className="square__surface"></div>
-              <button className="square__btn">Upgrade: 0</button>
+            <li className="square autoclickers-list__item" key={clicker.id}>
+              <button
+                className="square__surface"
+                onClick={() => {
+                  updateScore(11);
+                  incClicksCount();
+                }}
+              >
+                <span className="square__clicks">CLicks: 0</span>
+                <span className="square__score">Score: 0</span>
+              </button>
+              <button className="square__upgrade-btn">Upgrade: 0</button>
             </li>
           );
         })}
