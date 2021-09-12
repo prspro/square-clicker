@@ -2,13 +2,13 @@ import React from "react";
 import useAutoclicker from "../hooks/useAutoclicker";
 
 export default function Autoclicker(props) {
-  const { updateOnClick } = useAutoclicker(props);
+  const { handleClick } = useAutoclicker(props);
   return (
     <div className="square">
       <button
         className="square__surface"
         onClick={() => {
-          updateOnClick();
+          handleClick();
         }}
       >
         <span className="square__clicks">
