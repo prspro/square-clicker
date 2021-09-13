@@ -14,6 +14,16 @@ export default function useSquaresGame() {
     });
   };
 
+  const squareClick = () => {
+    setGameData((prev) => {
+      return {
+        ...prev,
+        totalScore: prev.totalScore + 1,
+        totalClicksCount: prev.totalClicksCount + 1,
+      };
+    });
+  };
+
   const autoclickerTick = (id) => {
     setGameData((prev) => {
       const data = prev;
@@ -72,7 +82,7 @@ export default function useSquaresGame() {
 
   return {
     gameData,
-    updateScore,
+    squareClick,
     autoclickerTick,
     autoclickerUpgrade,
   };

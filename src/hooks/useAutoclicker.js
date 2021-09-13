@@ -11,9 +11,10 @@ export default function useAutoclicker({
   const handleClick = () => {
     if (!isActive) {
       setIsActive(true);
+      autoclickerUpgrade(clickerData.id);
       setInterval(() => {
         autoclickerTick(clickerData.id);
-      }, 1e3);
+      }, 2e3);
     } else {
       autoclickerUpgrade(clickerData.id);
       console.log(clickerData);

@@ -4,7 +4,7 @@ import Square from "../Square/Square";
 import Autoclicker from "../Autoclicker/Autoclicker";
 
 export default function SquaresGame() {
-  const { gameData, updateScore, autoclickerTick, autoclickerUpgrade } =
+  const { gameData, squareClick, autoclickerTick, autoclickerUpgrade } =
     useSquaresGame();
   return (
     <div className="squares-scene">
@@ -17,8 +17,8 @@ export default function SquaresGame() {
         </p>
         <Square
           gameData={gameData}
-          updateScore={(score) => {
-            updateScore(score);
+          updateScore={() => {
+            squareClick();
           }}
         />
       </div>

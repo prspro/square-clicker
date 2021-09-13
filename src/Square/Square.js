@@ -2,7 +2,7 @@ import React from "react";
 import useSquare from "../hooks/useSquare";
 
 export default function Square(props) {
-  const { mainSquareClick } = useSquare(props);
+  const { mainSquareClick, clicks, score } = useSquare(props);
   return (
     <div className="square">
       <button
@@ -11,10 +11,9 @@ export default function Square(props) {
         }}
         className="square__surface square__surface--big"
       >
-        <span className="square__clicks">CLicks: 0</span>
-        <span className="square__score">Score: 0</span>
+        <span className="square__clicks">CLicks: {clicks}</span>
+        <span className="square__score">Score: {score}</span>
       </button>
-      <button className="square__upgrade-btn">Upgrade: 0</button>
     </div>
   );
 }
