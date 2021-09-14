@@ -2,22 +2,41 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 export default function useAutoclicker({
+  totalScore,
+  clickersPrice,
   clickerData,
   autoclickerTick,
   autoclickerUpgrade,
 }) {
   const [isActive, setIsActive] = useState(false);
+  const [squarePrice, setSquarePrice] = useState(
+    Math.pow(clickersPrice, clickerData.pricePow)
+  );
+  const [isUpgradable, setisUpgradable] = useState(
+    Math.pow(clickersPrice, clickerData.pricePow) <= totalScore
+  );
+
+  useEffect(() => {
+    setSquarePrice(Math.pow(clickersPrice, clickerData.pricePow));
+    setisUpgradable(
+      Math.pow(clickersPrice, clickerData.pricePow) <= totalScore
+    );
+  });
 
   const handleClick = () => {
     if (!isActive) {
-      setIsActive(true);
-      autoclickerUpgrade(clickerData.id);
-      setInterval(() => {
-        autoclickerTick(clickerData.id);
-      }, 2e3);
+      if (totalScore >= Math.pow(clickersPrice, clickerData.pricePow)) {
+        setIsActive(true);
+        autoclickerUpgrade(clickerData.id);
+        setInterval(() => {
+          autoclickerTick(clickerData.id);
+        }, 2e3);
+      }
     } else {
-      autoclickerUpgrade(clickerData.id);
-      console.log(clickerData);
+      if (totalScore >= Math.pow(clickersPrice, clickerData.pricePow)) {
+        autoclickerUpgrade(clickerData.id);
+        // console.log(clickerData);
+      }
     }
   };
 
@@ -29,6 +48,9 @@ export default function useAutoclicker({
   // };
 
   return {
+    isActive,
+    isUpgradable,
+    squarePrice,
     handleClick,
   };
 }

@@ -12,7 +12,6 @@ export const initialData = {
       id: 0,
       score: 0,
       clicks: 0,
-
       pricePow: 0,
       productivityPow: 0,
     },
