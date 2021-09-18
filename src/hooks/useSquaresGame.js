@@ -28,7 +28,9 @@ export default function useSquaresGame() {
     setGameData((prev) => {
       const data = prev;
       const score = Math.pow(
-        data.clickersProductivity,
+        data.clickers.find((entry) => {
+          return entry.id === id;
+        }).productivity,
         data.clickers.find((entry) => {
           return entry.id === id;
         }).productivityPow
@@ -56,7 +58,9 @@ export default function useSquaresGame() {
     setGameData((prev) => {
       const data = prev;
       const price = Math.pow(
-        data.clickersPrice,
+        data.clickers.find((entry) => {
+          return entry.id === id;
+        }).price,
         data.clickers.find((entry) => {
           return entry.id === id;
         }).pricePow

@@ -28,7 +28,6 @@ export default function SquaresGame() {
             <li className="autoclickers-list__item" key={idx}>
               <Autoclicker
                 totalScore={gameData.totalScore}
-                clickersPrice={gameData.clickersPrice}
                 clickerData={clicker}
                 autoclickerTick={autoclickerTick}
                 autoclickerUpgrade={autoclickerUpgrade}
