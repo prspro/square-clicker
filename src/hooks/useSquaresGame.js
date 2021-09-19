@@ -4,15 +4,15 @@ import { initialData } from "../data/initialData";
 export default function useSquaresGame() {
   const [gameData, setGameData] = useState(initialData);
 
-  const updateScore = (score) => {
-    setGameData((prev) => {
-      return {
-        ...prev,
-        totalScore: prev.totalScore + score,
-        totalClicksCount: prev.totalClicksCount + 1,
-      };
-    });
-  };
+  // const updateScore = (score) => {
+  //   setGameData((prev) => {
+  //     return {
+  //       ...prev,
+  //       totalScore: prev.totalScore + score,
+  //       totalClicksCount: prev.totalClicksCount + 1,
+  //     };
+  //   });
+  // };
 
   const squareClick = () => {
     setGameData((prev) => {
@@ -27,14 +27,10 @@ export default function useSquaresGame() {
   const autoclickerTick = (id) => {
     setGameData((prev) => {
       const data = prev;
-      const score = Math.pow(
-        data.clickers.find((entry) => {
-          return entry.id === id;
-        }).productivity,
-        data.clickers.find((entry) => {
-          return entry.id === id;
-        }).productivityPow
-      );
+      const { productivity, productivityPow } = data.clickers.find((entry) => {
+        return entry.id === id;
+      });
+      const score = Math.pow(productivity, productivityPow);
       return {
         ...prev,
         totalScore: prev.totalScore + score,
@@ -57,18 +53,13 @@ export default function useSquaresGame() {
   const autoclickerUpgrade = (id) => {
     setGameData((prev) => {
       const data = prev;
-      const price = Math.pow(
-        data.clickers.find((entry) => {
-          return entry.id === id;
-        }).price,
-        data.clickers.find((entry) => {
-          return entry.id === id;
-        }).pricePow
-      );
-
+      const { price, pricePow } = data.clickers.find((entry) => {
+        return entry.id === id;
+      });
+      const deltaPrice = Math.pow(price, pricePow);
       return {
         ...data,
-        totalScore: data.totalScore - price,
+        totalScore: data.totalScore - deltaPrice,
         clickers: data.clickers.map((clicker) => {
           if (clicker.id === id) {
             return {

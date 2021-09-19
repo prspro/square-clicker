@@ -1,16 +1,10 @@
 import React from "react";
 import useAutoclicker from "../hooks/useAutoclicker";
+import classnames from "classnames";
 
 export default function Autoclicker(props) {
-  const { isActive, isUpgradable, squarePrice, handleClick } =
+  const { isActive, isUpgradable, clickerPrice, handleClick } =
     useAutoclicker(props);
-
-  const btnClassList = ["square__upgrade-btn"];
-  if (isUpgradable) {
-    btnClassList.push("square__upgrade-btn--enabled");
-  } else {
-    btnClassList.push("square__upgrade-btn--disabled");
-  }
 
   return (
     <div className="square">
@@ -21,13 +15,16 @@ export default function Autoclicker(props) {
         <span className="square__score">Points: {props.clickerData.score}</span>
       </div>
       <button
-        className={btnClassList.join(" ")}
+        className={classnames("square__upgrade-btn", {
+          "square__upgrade-btn--enabled": isUpgradable,
+          "square__upgrade-btn--disabled": !isUpgradable,
+        })}
         onClick={() => {
           handleClick();
         }}
       >
-        {isActive ? "Upgrade" : "Buy"}: {squarePrice} point
-        {squarePrice > 1 ? "s" : ""}
+        {isActive ? "Upgrade" : "Buy"}: {clickerPrice} point
+        {clickerPrice > 1 ? "s" : ""}
       </button>
     </div>
   );

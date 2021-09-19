@@ -8,7 +8,7 @@ export default function useAutoclicker({
   autoclickerUpgrade,
 }) {
   const [isActive, setIsActive] = useState(false);
-  const [squarePrice, setSquarePrice] = useState(
+  const [clickerPrice, setClickerPrice] = useState(
     Math.pow(clickerData.price, clickerData.pricePow)
   );
   const [isUpgradable, setIsUpgradable] = useState(
@@ -16,7 +16,10 @@ export default function useAutoclicker({
   );
 
   useEffect(() => {
-    setSquarePrice(Math.pow(clickerData.price, clickerData.pricePow));
+    setClickerPrice(Math.pow(clickerData.price, clickerData.pricePow));
+  }, [clickerData.price, clickerData.pricePow]);
+
+  useEffect(() => {
     setIsUpgradable(
       Math.pow(clickerData.price, clickerData.pricePow) <= totalScore
     );
@@ -49,7 +52,7 @@ export default function useAutoclicker({
   return {
     isActive,
     isUpgradable,
-    squarePrice,
+    clickerPrice,
     handleClick,
   };
 }
