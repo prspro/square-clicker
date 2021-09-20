@@ -4,8 +4,13 @@ import Square from "../Square/Square";
 import Autoclicker from "../Autoclicker/Autoclicker";
 
 export default function SquaresGame() {
-  const { gameData, squareClick, autoclickerTick, autoclickerUpgrade } =
-    useSquaresGame();
+  const {
+    gameData,
+    totalProducedPointsCount,
+    squareClick,
+    autoclickerTick,
+    autoclickerUpgrade,
+  } = useSquaresGame();
   return (
     <div className="squares-scene">
       <div className="squares-scene__col squares-scene__col--main">
@@ -29,6 +34,7 @@ export default function SquaresGame() {
               <Autoclicker
                 totalScore={gameData.totalScore}
                 clickerData={clicker}
+                totalProducedPointsCount={totalProducedPointsCount}
                 autoclickerTick={autoclickerTick}
                 autoclickerUpgrade={autoclickerUpgrade}
               />

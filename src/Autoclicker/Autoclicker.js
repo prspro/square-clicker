@@ -3,16 +3,28 @@ import useAutoclicker from "../hooks/useAutoclicker";
 import classnames from "classnames";
 
 export default function Autoclicker(props) {
-  const { isActive, isUpgradable, clickerPrice, handleClick } =
+  const { isActive, isUpgradable, clickerPrice, productivity, handleClick } =
     useAutoclicker(props);
 
   return (
     <div className="square">
-      <div className="square__surface">
-        <span className="square__clicks">
-          CLicks: {props.clickerData.clicks}
+      <div
+        className="square__surface square__surface--painted"
+        style={{ "--paint-height": productivity + "%" }}
+      >
+        <span className="square__pints">
+          Points produced: {props.clickerData.score}
         </span>
-        <span className="square__score">Points: {props.clickerData.score}</span>
+        <span className="square__clicks">
+          Clicks: {props.clickerData.clicks}
+        </span>
+        <span className="square__score">
+          Productivity:{" "}
+          {Math.pow(
+            props.clickerData.productivity,
+            props.clickerData.productivityPow
+          )}
+        </span>
       </div>
       <button
         className={classnames("square__upgrade-btn", {

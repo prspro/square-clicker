@@ -6,6 +6,9 @@
 .square {
   text-align: center;
 }
+.square__pints {
+  font-size: 10px;
+}
 .square__surface {
   min-width: 100px;
   height: 100px;
@@ -14,6 +17,25 @@
   display: block;
   margin-bottom: 2px;
 }
+
+.square__surface--painted {
+  background: #1e5799; /* Old browsers */
+  background: -moz-linear-gradient(top, #1e5799 0%, #7db9e8 46%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    #1e5799 0%,
+    #7db9e8 46%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to top,
+    #ceeec6 0%,
+    #ceeec6 var(--paint-height),
+    #fff var(--paint-height),
+    #fff 100%
+  );
+  transition: all 0.3s;
+}
+
 .square__surface--big {
   width: 200px;
   height: 200px;

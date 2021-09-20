@@ -4,15 +4,13 @@ import { initialData } from "../data/initialData";
 export default function useSquaresGame() {
   const [gameData, setGameData] = useState(initialData);
 
-  // const updateScore = (score) => {
-  //   setGameData((prev) => {
-  //     return {
-  //       ...prev,
-  //       totalScore: prev.totalScore + score,
-  //       totalClicksCount: prev.totalClicksCount + 1,
-  //     };
-  //   });
-  // };
+  const totalProducedPointsCount = gameData.clickers
+    .map((entry) => {
+      return entry.score;
+    })
+    .reduce((accum, current) => {
+      return accum + current;
+    });
 
   const squareClick = () => {
     setGameData((prev) => {
@@ -66,6 +64,7 @@ export default function useSquaresGame() {
               ...clicker,
               pricePow: clicker.pricePow + 1,
               productivityPow: clicker.productivityPow + 1,
+              // score: clicker.score - deltaPrice,
             };
           } else {
             return clicker;
@@ -77,6 +76,7 @@ export default function useSquaresGame() {
 
   return {
     gameData,
+    totalProducedPointsCount,
     squareClick,
     autoclickerTick,
     autoclickerUpgrade,
